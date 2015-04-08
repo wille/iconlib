@@ -46,6 +46,14 @@ public class FileIconUtils {
 		
 		return icon;
 	}
+	
+	public static Icon getIconFromExtension(String f, boolean folder) {
+		if (folder) {
+			return getFolderIcon();
+		} else {
+			return getIconFromExtension(f);
+		}
+	}
 
 	/**
 	 * Gets default icon from file extension

@@ -61,7 +61,13 @@ public class FileIconUtils {
 	 * @return
 	 */
 	public static Icon getIconFromExtension(String f) {
-		String extension = f.substring(f.lastIndexOf("."), f.length());
+		String extension;
+		
+		if (f.contains(".")) {
+			extension = f.substring(f.lastIndexOf("."), f.length());
+		} else {
+			extension = "";
+		}
 		
 		Icon icon = null;
 		

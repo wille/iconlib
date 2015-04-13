@@ -1,5 +1,6 @@
 package iconlib;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +38,13 @@ public class IconUtils {
 		if (CACHE.containsKey(path)) {
 			icon = CACHE.get(path);
 		} else {
-			icon = new ImageIcon(IconUtils.class.getResource(path));
+			URL url = IconUtils.class.getResource(path);
+			
+			if (url == null) {
+				return null;
+			}
+			
+			icon = new ImageIcon(url);
 			CACHE.put(path, icon);
 		}
 		

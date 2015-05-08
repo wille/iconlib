@@ -19,7 +19,15 @@ public class IconUtils {
 	 * @return the icon
 	 */
 	public static ImageIcon getIcon(String path) {
-		return getIcon(path, true);
+		return getIcon(path, true, null);
+	}
+	
+	public static ImageIcon getIcon(String path, Class<?> clazz) {
+		return getIcon(path, true, clazz);
+	}
+	
+	public static ImageIcon getIcon(String path, boolean defaultPath) {
+		return getIcon(path, defaultPath, null);
 	}
 	
 	/**
@@ -28,9 +36,13 @@ public class IconUtils {
 	 * @param defaultPath If should return icon with default extension and in default path
 	 * @return the icon
 	 */
-	public static ImageIcon getIcon(String path, boolean defaultPath) {
+	public static ImageIcon getIcon(String path, boolean defaultPath, Class<?> clazz) {
 		if (defaultPath) {
 			path = "/icons/" + path + ".png";
+		}
+		
+		if (clazz == null) {
+			clazz = IconUtils.class;
 		}
 		
 		ImageIcon icon;
@@ -38,8 +50,8 @@ public class IconUtils {
 		if (CACHE.containsKey(path)) {
 			icon = CACHE.get(path);
 		} else {
-			URL url = IconUtils.class.getResource(path);
-			
+			URL url = clazz.getResource(path);
+
 			if (url == null) {
 				return null;
 			}

@@ -14,7 +14,7 @@ public class IconUtils {
 	private static final Map<String, ImageIcon> CACHE = new HashMap<String, ImageIcon>();
 
 	/**
-	 * Gets icon from default path (/icons/name.png)
+	 * Gets icon from default resource path (/icons/name.png)
 	 * @param path
 	 * @return the icon
 	 */
@@ -22,10 +22,22 @@ public class IconUtils {
 		return getIcon(path, true, null);
 	}
 	
+	/**
+	 * Gets icon from default resource path (/icons/name.png)
+	 * @param path
+	 * @param clazz from this class classloader
+	 * @return
+	 */
 	public static ImageIcon getIcon(String path, Class<?> clazz) {
 		return getIcon(path, true, clazz);
 	}
 	
+	/**
+	 * Get icon from current classloader (custom resource path)
+	 * @param path
+	 * @param defaultPath
+	 * @return
+	 */
 	public static ImageIcon getIcon(String path, boolean defaultPath) {
 		return getIcon(path, defaultPath, null);
 	}

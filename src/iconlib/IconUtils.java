@@ -48,19 +48,23 @@ public class IconUtils {
 	 * @param defaultPath If should return icon with default extension and in default path
 	 * @return the icon
 	 */
-	public static ImageIcon getIcon(String path, boolean defaultPath, Class<?> clazz) {
+	public static ImageIcon getIcon(String path, boolean defaultPath, Class<?> clazz) {		
 		if (defaultPath) {
-			path = "/icons/" + path + ".png";
+			path = "/icons/" + path + ".png";	
 		}
 		
+		String key = path;
+
 		if (clazz == null) {
 			clazz = IconUtils.class;
+		} else {
+			key = clazz.getName() + key;
 		}
 		
 		ImageIcon icon;
 		
-		if (CACHE.containsKey(path)) {
-			icon = CACHE.get(path);
+		if (CACHE.containsKey(key)) {
+			icon = CACHE.get(key);
 		} else {
 			URL url = clazz.getResource(path);
 
@@ -69,7 +73,7 @@ public class IconUtils {
 			}
 			
 			icon = new ImageIcon(url);
-			CACHE.put(path, icon);
+			CACHE.put(key, icon);
 		}
 		
 		return icon;

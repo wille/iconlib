@@ -60,7 +60,7 @@ public class IconUtils {
 		} else {
 			key = clazz.getName() + key;
 		}
-		
+				
 		ImageIcon icon;
 		
 		if (CACHE.containsKey(key)) {
